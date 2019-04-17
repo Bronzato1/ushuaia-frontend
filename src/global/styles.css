@@ -1,0 +1,5 @@
+ux-dialog>ux-dialog-header,
+ux-dialog>ux-dialog-body,
+ux-dialog>ux-dialog-footer {
+  border: none;
+}

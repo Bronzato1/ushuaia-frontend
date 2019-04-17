@@ -1,0 +1,15 @@
+<template>
+    <h1>List of posts</h1>
+
+    <button type="button" class="btn btn-info" click.trigger="createNewPost()">New post</button>
+
+    <table>
+      <tr repeat.for="post of posts">
+        <td>${post.id}</td>
+        <td>${post.title}</td> 
+        <td><button type="button" class="btn btn-success" click.trigger="showPostDetail(post.id)">...</button></td> 
+        <td><button type="button" class="btn btn-danger" click.trigger="deletePost(post)">x</button></td>
+      </tr>
+  </table>
+
+</template>

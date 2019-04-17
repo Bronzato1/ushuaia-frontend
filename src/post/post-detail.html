@@ -1,0 +1,6 @@
+<template>
+    <h1>Post detail ${post.id}</h1>
+    <input type="text" value.bind="post.title" autofocus>
+    <froala-editor value.two-way="post.content"></froala-editor>
+    <button type="button" class="btn btn-dark" click.trigger="savePost()">Enregistrer</button>
+</template>
