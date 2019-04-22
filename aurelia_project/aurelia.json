@@ -69,6 +69,11 @@
             "main": "css/font-awesome.min.css"
           },
           "jquery",
+          { 
+            "name": "moment", 
+            "path": "../node_modules/moment", 
+            "main": "moment" 
+          },
           {
             "name": "froala-editor",
             "path": "../node_modules/froala-editor",

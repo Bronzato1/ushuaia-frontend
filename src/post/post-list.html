@@ -1,15 +1,45 @@
 <template>
-    <h1>List of posts</h1>
+  <require from="../global/header"></require>
 
-    <button type="button" class="btn btn-info" click.trigger="createNewPost()">New post</button>
+  <header>
+    <div slot="injected">
+      <form class="form-inline">
+        <button type="button" class="btn btn-info mr-2" click.trigger="createNewPost()">Nouveau billet</button>
+        <div class="input-group" style="width: 140px;">
+          <input type="text" class="form-control" value.bind="filter & debounce" placeholder="Filtrer la liste">
+          <div class="input-group-append" if.bind="filter">
+            <button class="btn btn-outline-secondary" type="button" click.delegate="filter = ''">
+              <i class="fa fa-times"></i>
+              <span class="sr-only" t="contacts.clear"></span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </header>
 
-    <table>
-      <tr repeat.for="post of posts">
-        <td>${post.id}</td>
-        <td>${post.title}</td> 
-        <td><button type="button" class="btn btn-success" click.trigger="showPostDetail(post.id)">...</button></td> 
-        <td><button type="button" class="btn btn-danger" click.trigger="deletePost(post)">x</button></td>
-      </tr>
-  </table>
+  <section class="container au-animate mt-3">
+
+    <group-list items.bind="posts | filterBy:filter:'title'" group-by="month" order-by="title">
+      <template replace-part="item">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <a route-href="route: post-detail; params.bind: { id: id }">
+                ${id} <strong>${title}</strong>
+              </a>
+            </div>
+            <div class="col col-lg-1">
+              <button type="button" class="btn btn-danger pull-right" click.trigger="deletePost(item)">
+                <i class="fa fa-times"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div>
+      </template>
+    </group-list>
+
+  </section>
 
 </template>

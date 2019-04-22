@@ -1,15 +1,18 @@
 import {PostGateway} from "./post-gateway";
 import {inject} from "aurelia-framework";
+import {Router} from "aurelia-router";
 import {Post} from "./models";
 import {Box} from "../dialogs/box";
 
-@inject(PostGateway, Box)
+@inject(PostGateway, Router, Box)
 export class PostDetail {
-    constructor(postGateway: PostGateway, box: Box) {
+    constructor(postGateway: PostGateway, router: Router, box: Box) {
         this.postGateway = postGateway;
+        this.router = router;
         this.box = box;
     }
     private postGateway: PostGateway;
+    private router: Router;
     private box: Box;
     private post: Post;
     private activate(params, config) {
@@ -46,7 +49,8 @@ export class PostDetail {
         else
           fct = self.postGateway.createById(self.post);
 
-        await fct.then(() => self.box.showNotification(msgSaved, title, buttonOk))
+        await fct.then(() => self.box.showNotification(msgSaved, title, buttonOk)
+                                     .whenClosed(() => self.router.navigate('postList')))
                  .catch(() => self.box.showError(msgError, title, [buttonOk]));
       }
     }

@@ -1,6 +1,39 @@
 <template>
-    <h1>Post detail ${post.id}</h1>
-    <input type="text" value.bind="post.title" autofocus>
-    <froala-editor value.two-way="post.content"></froala-editor>
-    <button type="button" class="btn btn-dark" click.trigger="savePost()">Enregistrer</button>
+
+  <require from="./../global/header"></require>
+
+  <header>
+    <div slot="injected">
+      <button type="submit" ref="button" form="postForm" class="btn btn-info">Enregistrer</button>
+    </div>
+  </header>
+
+  <section class="container au-animate mt-3">
+    <form id="postForm" submit.trigger="savePost()">
+
+      <div class="form-group">
+
+        <div class="col-sm-12">
+          <div class="input-group input-group-lg mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Large</span>
+            </div>
+            <input type="text" class="form-control" value.bind="post.title" placeholder="Le titre de votre billet" autofocus>
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <input type="date" class="form-control mb-3" value.bind="post.creation | dateFormat:'YYYY-MM-DD'">
+        </div>
+
+        <div class="col-sm-12">
+          <froala-editor value.two-way="post.content"></froala-editor>
+        </div>
+
+      </div>
+
+    </form>
+  </section>
+
+
 </template>
