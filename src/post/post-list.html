@@ -4,7 +4,8 @@
   <header>
     <div slot="injected">
       <form class="form-inline">
-        <button type="button" class="btn btn-info mr-2" click.trigger="createNewPost()"><span class="fa fa-plus fa-lg mr-2"></span>Nouveau billet</button>
+        <button type="button" class="btn btn-info mr-2" click.trigger="createNewPost()"><span
+            class="fa fa-plus fa-lg mr-2"></span>Nouveau billet</button>
         <div class="input-group" style="width: 140px;">
           <input type="text" class="form-control" value.bind="filter & debounce" placeholder="Filtrer la liste">
           <div class="input-group-append" if.bind="filter">
@@ -25,8 +26,9 @@
         <div class="container">
           <div class="row">
             <div class="col">
+              <span class="badge badge-pill badge-primary">${creation | dateFormat: 'dddd DD'}</span>
               <a route-href="route: post-detail; params.bind: { id: id }">
-                ${creation | dateFormat: 'DD MMMM'} | <strong>${title}</strong>
+                <strong>${title}</strong>
               </a>
             </div>
             <div class="col col-lg-1">

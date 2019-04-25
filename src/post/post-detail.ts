@@ -1,5 +1,5 @@
 import {PostGateway} from "./post-gateway";
-import {inject} from "aurelia-framework";
+import {inject, bindable} from "aurelia-framework";
 import {Router} from "aurelia-router";
 import {Post} from "./models";
 import {Box} from "../dialogs/box";
@@ -17,6 +17,7 @@ export class PostDetail {
     private router: Router;
     private box: Box;
     private post: Post;
+    @bindable datepicker;
     private activate(params, config) {
       var self = this;
       if (params && params.id)
@@ -58,5 +59,12 @@ export class PostDetail {
     }
     private showPostList() {
       this.router.navigateToRoute('post-list');
+    }
+    private datepickerChanged() {
+      this.datepicker.events.onHide = (e) => console.log('onHide');
+      this.datepicker.events.onShow = (e) => console.log('onShow');
+      this.datepicker.events.onChange = (e) => console.log('onChange');
+      this.datepicker.events.onError = (e) => console.log('onError');
+      this.datepicker.events.onUpdate = (e) => console.log('onUpdate');
     }
 }
