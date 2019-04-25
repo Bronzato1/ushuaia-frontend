@@ -36,7 +36,7 @@ export class PostGateway {
         return Promise.reject();
       });
   }
-  createById(post: Post): Promise<Post> {
+  createById(post: Post): Promise<void | Post> {
     return this.httpClient.fetch(`api/post`, {
       method: 'post',
       body: json(post)

@@ -3,6 +3,8 @@ import {Router} from "aurelia-router";
 import {PostGateway} from "./post-gateway";
 import {Post} from "./models";
 import {Box} from "../dialogs/box";
+import * as moment from "moment";
+import 'moment/locale/fr'
 
 @inject(Router, PostGateway, Box)
 export class PostList{

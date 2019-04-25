@@ -3,6 +3,8 @@ import {inject} from "aurelia-framework";
 import {Router} from "aurelia-router";
 import {Post} from "./models";
 import {Box} from "../dialogs/box";
+import * as moment from "moment";
+import 'moment/locale/fr'
 
 @inject(PostGateway, Router, Box)
 export class PostDetail {
@@ -53,5 +55,8 @@ export class PostDetail {
                                      .whenClosed(() => self.router.navigate('postList')))
                  .catch(() => self.box.showError(msgError, title, [buttonOk]));
       }
+    }
+    private showPostList() {
+      this.router.navigateToRoute('post-list');
     }
 }

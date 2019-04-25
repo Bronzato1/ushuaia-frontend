@@ -4,7 +4,7 @@
   <header>
     <div slot="injected">
       <form class="form-inline">
-        <button type="button" class="btn btn-info mr-2" click.trigger="createNewPost()">Nouveau billet</button>
+        <button type="button" class="btn btn-info mr-2" click.trigger="createNewPost()"><span class="fa fa-plus fa-lg mr-2"></span>Nouveau billet</button>
         <div class="input-group" style="width: 140px;">
           <input type="text" class="form-control" value.bind="filter & debounce" placeholder="Filtrer la liste">
           <div class="input-group-append" if.bind="filter">
@@ -20,13 +20,13 @@
 
   <section class="container au-animate mt-3">
 
-    <group-list items.bind="posts | filterBy:filter:'title'" group-by="month" order-by="title">
+    <group-list items.bind="posts | filterBy:filter:'title'" group-by="yearMonth" order-by="yearMonthDay">
       <template replace-part="item">
         <div class="container">
           <div class="row">
             <div class="col">
               <a route-href="route: post-detail; params.bind: { id: id }">
-                ${id} <strong>${title}</strong>
+                ${creation | dateFormat: 'DD MMMM'} | <strong>${title}</strong>
               </a>
             </div>
             <div class="col col-lg-1">

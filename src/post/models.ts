@@ -1,3 +1,5 @@
+import * as moment from "moment";
+
 export class Post {
 
     public id: number;
@@ -6,7 +8,9 @@ export class Post {
     public creation: Date;
 
     static fromObject(src) {
-        return Object.assign(new Post(), src);
+        var tmpObj: Post = Object.assign(new Post(), src);
+        tmpObj.creation = moment.utc(src.creation).toDate();
+        return tmpObj;
     }
  
     get firstLetter() {
@@ -14,14 +18,20 @@ export class Post {
       return name ? name[0].toUpperCase() : '?';
     }
 
-    get month() 
+    get monthYear() 
     {
-      var creation: string = this.creation.toString();
-      var arr = creation.split("-");
       var months = [ "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" ];
-      var month_index =  parseInt(arr[1],10) - 1;
-      return months[month_index];
-
-     
+      var month_index = this.creation.getMonth();
+      return months[month_index] + ' ' + moment(this.creation).year();
     }
+
+    get yearMonth(){
+      return moment(this.creation).format('YYYY-MM');
+    }
+
+    get yearMonthDay(){
+      return moment(this.creation).format('YYYY-MM-DD');
+    }
+
+    
 }

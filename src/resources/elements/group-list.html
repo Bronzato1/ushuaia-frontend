@@ -1,7 +1,7 @@
 <template bindable="items, groupBy, orderBy">
     <div repeat.for="group of items | groupBy:groupBy | orderBy:'key'" class="card" style="margin-bottom: 20px;">
       <div class="card-header">
-        ${group.key}
+        ${group.key | dateFormat: 'MMMM YYYY' | uppercaseFirstLetter}
       </div>
       <ul class="list-group list-group-flush">
         <li repeat.for="item of group.items | orderBy:orderBy" class="list-group-item">

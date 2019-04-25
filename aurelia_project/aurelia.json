@@ -72,7 +72,24 @@
           { 
             "name": "moment", 
             "path": "../node_modules/moment", 
-            "main": "moment" 
+            "main": "moment",
+            "resources": ["locale/fr.js"]
+          },
+          {
+            "name": "eonasdan-bootstrap-datetimepicker",
+            "path": "../node_modules/eonasdan-bootstrap-datetimepicker/build",
+            "main": "js/bootstrap-datetimepicker.min",
+            "resources": [
+              "css/bootstrap-datetimepicker.min.css"
+            ]
+          },
+          {
+            "name": "aurelia-bootstrap-datetimepicker",
+            "path": "../node_modules/aurelia-bootstrap-datetimepicker/dist/amd",
+            "main": "index",
+            "resources": [
+              "**/*.{css,html}"
+            ]
           },
           {
             "name": "froala-editor",

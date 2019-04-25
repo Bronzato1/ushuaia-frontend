@@ -1,15 +1,22 @@
 import {Aurelia} from 'aurelia-framework'
 import environment from './environment';
-import "froala-editor/js/froala_editor.pkgd.min";
+import 'froala-editor/js/froala_editor.pkgd.min';
+import 'eonasdan-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css';
+import 'aurelia-bootstrap-datetimepicker/bootstrap-datetimepicker-bs4.css';
 
 export function configure(aurelia: Aurelia) {
   aurelia.use
     .standardConfiguration()
     .feature('resources')
     .plugin('aurelia-dialog')
+    .plugin('aurelia-bootstrap-datetimepicker', config => {
+      config.extra.bootstrapVersion = 4;
+      config.extra.buttonClass = 'btn btn-outline-secondary';
+    })
     .plugin('aurelia-froala-editor', config => {
       config.options({
-        toolbarInline: true
+        toolbarInline: true,
+        charCounterCount: false
       })
     });
 
