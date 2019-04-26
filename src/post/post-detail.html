@@ -32,14 +32,25 @@
               <span class="input-group-text">Date de création</span>
             </div>
             <abp-datetime-picker element.bind="datepicker" model.bind="post.creation"
-              options.bind="{ format: 'DD/MM/YYYY', locale: 'fr' }" 
-              icon-base="font-awesome" with-date-icon="true"
+              options.bind="{ format: 'DD/MM/YYYY', locale: 'fr' }" icon-base="font-awesome" with-date-icon="true"
               style="width: 150px;"></abp-datetime-picker>
           </div>
         </div>
 
         <div class="col-sm-12">
-          <froala-editor value.two-way="post.content"></froala-editor>
+          <froala-editor value.two-way="post.content" config.bind="{
+            toolbarInline: true,
+            charCounterCount: false,
+            imageUploadURL: 'http://localhost:5000/fapi/froalaapi/UploadImage',
+            fileUploadURL: '/FroalaApi/UploadFile',
+            imageManagerLoadURL: '/FroalaApi/LoadImages',
+            imageManagerDeleteURL: '/FroalaApi/DeleteImage', 
+            imageManagerDeleteMethod: 'POST'
+          }" event-handlers.bind = "{
+            'image.uploaded': imageUploaded,
+            'image.removed': imageRemoved,
+            'image.file.unlink': imageFileunlink
+          }"></froala-editor>
         </div>
 
       </div>

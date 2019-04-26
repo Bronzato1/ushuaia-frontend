@@ -16,7 +16,6 @@ export function configure(aurelia: Aurelia) {
     })
     .plugin('aurelia-froala-editor', config => {
       config.options({
-        toolbarInline: true,
         charCounterCount: false
       })
     });
