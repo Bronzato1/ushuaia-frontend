@@ -1,0 +1,47 @@
+<template>
+  <require from="../global/header"></require>
+
+  <header>
+    <div slot="injected">
+      <form class="form-inline">
+        <button type="button" class="btn btn-info mr-2" click.trigger="createNewPost()"><span
+            class="fa fa-plus fa-lg mr-2"></span>Nouveau billet</button>
+        <div class="input-group" style="width: 140px;">
+          <input type="text" class="form-control" value.bind="filter & debounce" placeholder="Filtrer la liste">
+          <div class="input-group-append" if.bind="filter">
+            <button class="btn btn-outline-secondary" type="button" click.delegate="filter = ''">
+              <i class="fa fa-times"></i>
+              <span class="sr-only" t="contacts.clear"></span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </header>
+
+  <section class="container au-animate mt-3">
+
+    <group-list items.bind="posts | filterBy:filter:'title'" group-by="yearMonth" order-by="yearMonthDay">
+      <template replace-part="item">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <span class="badge badge-pill badge-primary">${creation | dateFormat: 'dddd DD'}</span>
+              <a route-href="route: post-detail; params.bind: { id: id }">
+                <strong>${title}</strong>
+              </a>
+            </div>
+            <div class="col col-lg-1">
+              <button type="button" class="btn btn-danger pull-right" click.trigger="deletePost(item)">
+                <i class="fa fa-times"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div>
+      </template>
+    </group-list>
+
+  </section>
+
+</template>
