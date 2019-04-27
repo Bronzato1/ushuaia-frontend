@@ -1,6 +1,7 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient, json} from 'aurelia-fetch-client';
 import {Post} from './models';
+import * as download from 'downloadjs';
 import environment from 'environment';
 
 @inject(HttpClient)
@@ -9,7 +10,7 @@ export class PostGateway {
     this.httpClient = httpClient.configure(config => {
       config
         .useStandardConfiguration()
-        .withBaseUrl(environment.postsUrl);
+        .withBaseUrl(environment.backendUrl);
     });
   }
   private httpClient: HttpClient;
@@ -60,5 +61,10 @@ export class PostGateway {
       {
         console.log('Result ' + error.status + ': ' + error.statusText);
       });
+  }
+  downloadZip() {
+    return this.httpClient.fetch(`api/post/downloadZip`)
+    .then((response: Response) => response.blob())
+    .then((blob: Blob) => download(blob, 'file.zip', 'application/octetstream'));
   }
 }

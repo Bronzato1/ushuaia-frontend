@@ -1,6 +1,7 @@
 <template>
 
   <require from="./../global/header"></require>
+  <require from="environment"></require>
 
   <header>
     <div slot="injected">
@@ -41,15 +42,15 @@
           <froala-editor value.two-way="post.content" config.bind="{
             toolbarInline: true,
             charCounterCount: false,
-            imageUploadURL: 'http://localhost:5000/fapi/froalaapi/UploadImage',
-            fileUploadURL: '/FroalaApi/UploadFile',
-            imageManagerLoadURL: '/FroalaApi/LoadImages',
-            imageManagerDeleteURL: '/FroalaApi/DeleteImage', 
+            imageUploadURL:         'http://localhost:5000/api/froala/UploadImage',
+            fileUploadURL:          'http://localhost:5000/api/froala/UploadFile',
+            imageManagerLoadURL:    'http://localhost:5000/api/froala/LoadImages',
+            imageManagerDeleteURL:  'http://localhost:5000/api/froala/DeleteImage', 
             imageManagerDeleteMethod: 'POST'
           }" event-handlers.bind = "{
             'image.uploaded': imageUploaded,
             'image.removed': imageRemoved,
-            'image.file.unlink': imageFileunlink
+            'image.file.unlink': imageFileUnlink
           }"></froala-editor>
         </div>
 

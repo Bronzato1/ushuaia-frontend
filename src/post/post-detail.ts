@@ -3,6 +3,7 @@ import { inject, bindable } from "aurelia-framework";
 import { Router } from "aurelia-router";
 import { Post } from "./models";
 import { Box } from "../dialogs/box";
+import environment from 'environment';
 import * as moment from "moment";
 import 'moment/locale/fr'
 
@@ -32,7 +33,7 @@ export class PostDetail {
   private imageUploaded(e, editor, response) {
     // Parse response to get image url.
     var resp = JSON.parse(response);
-    var img_url = 'http://localhost:5000/' + resp.link;
+    var img_url = environment.backendUrl + resp.link;
     // Insert image.
     editor.image.insert(img_url, false, null, editor.image.get(), response);
     return false;
@@ -43,7 +44,7 @@ export class PostDetail {
       method: "POST",
 
       // Request URL.
-      url: "http://localhost:5000/fapi/froalaapi/DeleteImage",
+      url: environment.backendUrl + "api/froala/DeleteImage",
 
       // Request params.
       data: {
@@ -57,13 +58,13 @@ export class PostDetail {
       console.log ('image delete problem: ' + JSON.stringify(err));
   })
   }
-  private fileUnlink(e, editor, link) {
+  private imageFileUnlink(e, editor, link) {
     $.ajax({
       // Request method.
       method: "POST",
 
       // Request URL.
-      url: "/FroalaApi/DeleteFile",
+      url: environment.backendUrl + "api/froala/DeleteFile",
 
       // Request params.
       data: {
@@ -77,7 +78,6 @@ export class PostDetail {
         console.log('file delete problem: ' + JSON.stringify(err));
       })
   }
-
   private attached() {
     $(document).ready(() => {
       $('[autofocus]').focus();

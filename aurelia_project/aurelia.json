@@ -63,6 +63,7 @@
             "resources": ["resources/*.js"]
           },
           "text",
+          "downloadjs",
           {
             "name": "font-awesome",
             "path": "../node_modules/font-awesome/",
