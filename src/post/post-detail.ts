@@ -14,11 +14,25 @@ export class PostDetail {
     this.router = router;
     this.box = box;
   }
+  @bindable datepicker;
   private postGateway: PostGateway;
   private router: Router;
   private box: Box;
   private post: Post;
-  @bindable datepicker;
+  private froalaConfig = {
+    toolbarInline: true,
+    charCounterCount: false,
+    imageUploadURL: 'http://localhost:5000/api/froala/UploadImage',
+    fileUploadURL: 'http://localhost:5000/api/froala/UploadFile',
+    imageManagerLoadURL: 'http://localhost:5000/api/froala/LoadImages',
+    imageManagerDeleteURL: 'http://localhost:5000/api/froala/DeleteImage',
+    imageManagerDeleteMethod: 'POST'
+  }
+  private froalaEvents = {
+    'image.uploaded': this.imageUploaded,
+    'image.removed': this.imageRemoved,
+    'image.file.unlink': this.imageFileUnlink
+  }
   private activate(params, config) {
     var self = this;
     if (params && params.id)
@@ -48,15 +62,15 @@ export class PostDetail {
 
       // Request params.
       data: {
-      src: $img.attr('src')
+        src: $img.attr('src')
       }
-  })
-  .done (function (data) {
-      console.log ('image was deleted');
-  })
-  .fail (function (err) {
-      console.log ('image delete problem: ' + JSON.stringify(err));
-  })
+    })
+      .done(function (data) {
+        console.log('image was deleted');
+      })
+      .fail(function (err) {
+        console.log('image delete problem: ' + JSON.stringify(err));
+      })
   }
   private imageFileUnlink(e, editor, link) {
     $.ajax({

@@ -39,19 +39,7 @@
         </div>
 
         <div class="col-sm-12">
-          <froala-editor value.two-way="post.content" config.bind="{
-            toolbarInline: true,
-            charCounterCount: false,
-            imageUploadURL:         'http://localhost:5000/api/froala/UploadImage',
-            fileUploadURL:          'http://localhost:5000/api/froala/UploadFile',
-            imageManagerLoadURL:    'http://localhost:5000/api/froala/LoadImages',
-            imageManagerDeleteURL:  'http://localhost:5000/api/froala/DeleteImage', 
-            imageManagerDeleteMethod: 'POST'
-          }" event-handlers.bind = "{
-            'image.uploaded': imageUploaded,
-            'image.removed': imageRemoved,
-            'image.file.unlink': imageFileUnlink
-          }"></froala-editor>
+          <froala-editor value.two-way="post.content" config.bind="froalaConfig" event-handlers.bind = "froalaEvents"></froala-editor>
         </div>
 
       </div>
