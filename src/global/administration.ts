@@ -7,8 +7,12 @@ export class Administration {
         this.postGateway = postGateway;
     }
     private postGateway: PostGateway;
-    private testDownload() {
+    private zipFile: any;
+    private exportData() {
         this.postGateway.downloadZip();
+    }
+    private importData() {
+        this.postGateway.uploadZip(this.zipFile);
     }
 
 }

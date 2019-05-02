@@ -1,4 +1,5 @@
 export default {
   debug: false,
-  testing: false
+  testing: false,
+  backendUrl: 'https://ushuaiabackend.azurewebsites.net/'
 };

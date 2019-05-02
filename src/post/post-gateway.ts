@@ -67,4 +67,15 @@ export class PostGateway {
     .then((response: Response) => response.blob())
     .then((blob: Blob) => download(blob, 'file.zip', 'application/octetstream'));
   }
+  uploadZip(file) {
+    let formData = new FormData();
+    formData.append('file', file[0]);
+    this.httpClient.fetch(`api/post/uploadZip`, { method: 'POST', body: formData })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data.count);
+      alert(data.count + ' éléments importés');
+    })
+    .catch(error => console.log(error));
+  }
 }

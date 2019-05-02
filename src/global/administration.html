@@ -1,5 +1,18 @@
 <template>
-    Admin
+    Admin...
 
-    <button click.trigger="testDownload()">GO</button>
+    <br/>
+
+    <button click.trigger="exportData()">Export des données dans un ZIP</button>
+
+    <br>
+    <br/>
+
+    <input type="file" name="images" accept=".zip" files.bind="zipFile">
+
+    <br/>
+    <br/>
+
+    <button click.trigger="importData()">Import de données à partir d'un ZIP</button>
+
 </template>
