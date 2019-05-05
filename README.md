@@ -6,6 +6,17 @@ Pour démarrer le projet:
 ----------
 
 voir ici: https://code.visualstudio.com/tutorials/static-website/create-storage
-au build --env prod
-copier le rép font-awesome dans le rép publish
-ensuite clic droit sur le répertoire publish et choisir Deploy to static website
+
+- supprimer et recréer le rép publish
+- au build --env prod
+- copier le rép scripts dans le rép publish
+- copier le rép font-awesome dans le rép publish
+- copier les fichiers index.html et favicon.ico dans le rép publish
+- ensuite clic droit sur le répertoire publish et choisir Deploy to static website > ushuaia
+
+Groupe de ressource: ushuaiaGroup
+‎                        │
+‎                        ├───────── ushuaiaApp - App service ------> backend
+‎                        │
+‎                        └───────── ushuaia - Compte de stockage --> frontend
+
