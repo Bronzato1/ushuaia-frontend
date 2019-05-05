@@ -15,6 +15,11 @@ export class PostDetail {
   private router: Router;
   private box: Box;
   private post: Post;
+  constructor(postGateway: PostGateway, router: Router, box: Box) {
+    this.postGateway = postGateway;
+    this.router = router;
+    this.box = box;
+  }
   private froalaConfig = {
     key: secret.froalaKey,
     toolbarInline: true,

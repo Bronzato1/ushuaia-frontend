@@ -1,12 +1,18 @@
-Pour démarrer le projet:
+### Pour compiler & exécuter le projet en mode développement
 
-* dans une fenêtre terminal: `au run`
-* lancer le debugger `F5`
+* Compilation `au build`
+* Exécution `au run`
+* Démarrage du débugger `F5`
+
+### Pour compiler le projet pour la production
+
+* `au build --env prod`
 
 -----------
 
-voir ici: https://code.visualstudio.com/tutorials/static-website/create-storage
+Voir ici: https://code.visualstudio.com/tutorials/static-website/create-storage
 
+### Etapes pour republier sur Azure
 - supprimer et recréer le rép publish
 - au build --env prod
 - copier le rép scripts dans le rép publish
@@ -14,9 +20,12 @@ voir ici: https://code.visualstudio.com/tutorials/static-website/create-storage
 - copier les fichiers index.html et favicon.ico dans le rép publish
 - ensuite clic droit sur le répertoire publish et choisir Deploy to static website > ushuaia
 
-Groupe de ressource: ushuaiaGroup
-‎                        │
-‎                        ├───────── ushuaiaApp - App service ------> backend
-‎                        │
-‎                        └───────── ushuaia - Compte de stockage --> frontend
+
+| Type                | Nom           |           |                |
+|---------------------|---------------|-----------|----------------|
+| Groupe de ressource | ushuaiaGroup  |           |                |
+| App service         | ushuaiaApp    | backend   | Web App        |
+| Compte de stockage  | ushuaia       | frontend  | Static Website |
+
+
 
