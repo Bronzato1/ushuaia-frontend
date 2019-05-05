@@ -4,6 +4,7 @@ import { Box } from '../dialogs/box';
 import {Post} from './models';
 import * as download from 'downloadjs';
 import environment from 'environment';
+import moment = require('moment');
 
 @inject(HttpClient, Box)
 export class PostGateway {
@@ -68,7 +69,12 @@ export class PostGateway {
   downloadZip() {
     return this.httpClient.fetch(`api/post/downloadZip`)
     .then((response: Response) => response.blob())
-    .then((blob: Blob) => download(blob, 'file.zip', 'application/octetstream'));
+    .then((blob: Blob) => 
+    {
+      var ymd: string = moment(new Date()).format('YYYY-MM-DD').toString();
+      var fileName: String = 'export-' + ymd + '.zip';
+      download(blob, fileName, 'application/octetstream');
+    })
   }
   uploadZip(file) {
     let formData = new FormData();

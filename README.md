@@ -6,6 +6,6 @@ Pour démarrer le projet:
 ----------
 
 voir ici: https://code.visualstudio.com/tutorials/static-website/create-storage
-dotnet publish -c Release -o ./publish
+au build --env prod
 copier le rép font-awesome dans le rép publish
 ensuite clic droit sur le répertoire publish et choisir Deploy to static website
