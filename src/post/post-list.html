@@ -6,6 +6,7 @@
       <form class="form-inline">
         <button type="button" class="btn btn-info mr-2" click.trigger="createNewPost()"><span
             class="fa fa-plus fa-lg mr-2"></span>Nouveau billet</button>
+        <button type="button" class="btn btn-link" click.trigger="viewSettings()"><span class="fa fa-cog fa-2x"></span></button>
         <div class="input-group" style="width: 140px;">
           <input type="text" class="form-control" value.bind="filter & debounce" placeholder="Filtrer la liste">
           <div class="input-group-append" if.bind="filter">

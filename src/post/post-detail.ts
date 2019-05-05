@@ -5,20 +5,20 @@ import { Post } from "./models";
 import { Box } from "../dialogs/box";
 import environment from 'environment';
 import * as moment from "moment";
-import 'moment/locale/fr'
+import 'moment/locale/fr';
 
 @inject(PostGateway, Router, Box)
 export class PostDetail {
-  constructor(postGateway: PostGateway, router: Router, box: Box) {
-    this.postGateway = postGateway;
-    this.router = router;
-    this.box = box;
-  }
   @bindable datepicker;
   private postGateway: PostGateway;
   private router: Router;
   private box: Box;
   private post: Post;
+  constructor(postGateway: PostGateway, router: Router, box: Box) {
+    this.postGateway = postGateway;
+    this.router = router;
+    this.box = box;
+  }
   private froalaConfig = {
     toolbarInline: true,
     charCounterCount: false,
@@ -26,8 +26,11 @@ export class PostDetail {
     fileUploadURL: 'http://localhost:5000/api/froala/UploadFile',
     imageManagerLoadURL: 'http://localhost:5000/api/froala/LoadImages',
     imageManagerDeleteURL: 'http://localhost:5000/api/froala/DeleteImage',
-    imageManagerDeleteMethod: 'POST'
+    imageManagerDeleteMethod: 'POST',
+    //htmlAllowedTags: ['.*'],
+    //pastePlain: false    
   }
+  
   private froalaEvents = {
     'image.uploaded': this.imageUploaded,
     'image.removed': this.imageRemoved,

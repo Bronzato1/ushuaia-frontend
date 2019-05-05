@@ -3,3 +3,32 @@ ux-dialog>ux-dialog-body,
 ux-dialog>ux-dialog-footer {
   border: none;
 }
+
+pre {
+  font-family: monospace;
+  background-color: #585858;
+  width: auto;
+  margin: 4em auto;
+  padding: 0.5em;
+  border-radius: .25em;
+  box-shadow: .1em .1em .5em rgba(0,0,0,.25);
+  line-height: 0;
+  counter-reset: line;
+}
+
+ pre code {
+  display: block;
+  color: white;
+  line-height: 1.5rem;
+}
+
+ code:before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    border-right: 1px solid #ddd;
+    padding: 0 .5em;
+    margin-right: .5em;
+    color: white;
+  }
+}

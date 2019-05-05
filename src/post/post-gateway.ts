@@ -1,19 +1,22 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient, json} from 'aurelia-fetch-client';
+import { Box } from '../dialogs/box';
 import {Post} from './models';
 import * as download from 'downloadjs';
 import environment from 'environment';
 
-@inject(HttpClient)
+@inject(HttpClient, Box)
 export class PostGateway {
-  constructor(httpClient:HttpClient) {
+  private httpClient: HttpClient;
+  private box: Box;
+  constructor(httpClient:HttpClient, box: Box) {
     this.httpClient = httpClient.configure(config => {
+      this.box = box;
       config
         .useStandardConfiguration()
         .withBaseUrl(environment.backendUrl);
     });
   }
-  private httpClient: HttpClient;
   getAll(): Promise<Post[]> {
     return this.httpClient.fetch(`api/post/`)
       .then(response => response.json())
@@ -53,9 +56,9 @@ export class PostGateway {
     return this.httpClient.fetch(`api/post/${id}`, {
       method: 'delete'
     })
-    .then(done => 
+    .then((response: Response) => 
       {
-        console.log('Result ' + done.status + ': ' + done.statusText);
+        console.log('Result ' + response.status + ': ' + response.statusText);
       })
     .catch(error => 
       {
@@ -73,9 +76,21 @@ export class PostGateway {
     this.httpClient.fetch(`api/post/uploadZip`, { method: 'POST', body: formData })
     .then(response => response.json())
     .then(data => {
-      console.log(data.count);
-      alert(data.count + ' éléments importés');
+      this.box.showNotification('Importation de ' + data.count + ' éléments', 'Confirmation', 'Ok');
     })
     .catch(error => console.log(error));
+  }
+  clearAllData() {
+    return this.httpClient.fetch(`api/post/clearAllData`)
+    .then(response => response.json())
+    .then(data => 
+    {
+      this.box.showNotification('Suppression de ' + data.count + ' éléments', 'Confirmation', 'Ok');
+    })
+    .catch(error =>
+      {
+        console.log('Result ' + error.status + ': ' + error.statusText);
+        console.log('Message ' + error.message);
+      });
   }
 }

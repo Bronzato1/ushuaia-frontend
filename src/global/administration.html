@@ -1,18 +1,22 @@
 <template>
-    Admin...
+
+    <require from="./../global/header"></require>
+  
+    <header>
+      <div slot="injected">
+        <button type="button" click.delegate="showPostList()" class="btn btn-info"><span
+            class="fa fa-list fa-lg mr-2"></span>Afficher la liste</button>
+        <button type="submit" ref="button" form="postForm" class="btn btn-info"><span
+            class="fa fa-save fa-lg mr-2"></span>Enregistrer</button>
+      </div>
+    </header>
+
+    <a href="#" click.trigger="exportData()"><i class="fa fa-download mr-2" aria-hidden="true"></i>Export des données dans un ZIP</a>
+    <br/>
+    <a href="#" click.trigger="importData()"><i class="fa fa-upload mr-2" aria-hidden="true"></i>Import des données à partir d'un ZIP</a>
+    <input id="fileChooser"  type="file" name="images" accept=".zip" files.bind="zipFile" style="position: absolute; top: -100px;">
 
     <br/>
-
-    <button click.trigger="exportData()">Export des données dans un ZIP</button>
-
-    <br>
-    <br/>
-
-    <input type="file" name="images" accept=".zip" files.bind="zipFile">
-
-    <br/>
-    <br/>
-
-    <button click.trigger="importData()">Import de données à partir d'un ZIP</button>
+    <a href="#" click.trigger="clearAllData()"><i class="fa fa-trash mr-2" aria-hidden="true"></i>Suppression de toutes les données</a>
 
 </template>
