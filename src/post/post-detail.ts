@@ -15,11 +15,6 @@ export class PostDetail {
   private router: Router;
   private box: Box;
   private post: Post;
-  constructor(postGateway: PostGateway, router: Router, box: Box) {
-    this.postGateway = postGateway;
-    this.router = router;
-    this.box = box;
-  }
   private froalaConfig = {
     key: secret.froalaKey,
     toolbarInline: true,
@@ -53,6 +48,7 @@ export class PostDetail {
     // Parse response to get image url.
     var resp = JSON.parse(response);
     var img_url = environment.backendUrl + resp.link;
+
     // Insert image.
     editor.image.insert(img_url, false, null, editor.image.get(), response);
     return false;
