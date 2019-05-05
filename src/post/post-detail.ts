@@ -4,6 +4,7 @@ import { Router } from "aurelia-router";
 import { Post } from "./models";
 import { Box } from "../dialogs/box";
 import environment from 'environment';
+import secret from 'secret';
 import * as moment from "moment";
 import 'moment/locale/fr';
 
@@ -20,6 +21,7 @@ export class PostDetail {
     this.box = box;
   }
   private froalaConfig = {
+    key: secret.froalaKey,
     toolbarInline: true,
     charCounterCount: false,
     imageUploadURL: 'http://localhost:5000/api/froala/UploadImage',

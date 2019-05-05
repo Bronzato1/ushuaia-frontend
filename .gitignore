@@ -8,5 +8,5 @@ node_modules
 /test/coverage-jest
 /test/coverage-karma
 /publish
-
+secret.ts
 .chrome
