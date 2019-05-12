@@ -1,0 +1,54 @@
+<template>
+    <ux-dialog>
+        <ux-dialog-body>
+              
+            <textarea value.bind="sourceCodeTextArea" style="width: 100%; min-width: 600px; height: 100px;"></textarea>
+
+            <br/>
+
+            <div class="row">
+              <div class="col l2">
+                  <div repeat.for="mode of modes">
+                      <input type="radio" model.bind="mode" id.bind="mode.id" checked.bind="$parent.selectedMode">
+                      <label class="form-check-label" for.bind="mode.id">
+                          ${mode.name}
+                        </label>
+                  </div>
+              </div>
+              <div class="col l2">
+                  <div repeat.for="theme of themes">
+                      <input type="radio" model.bind="theme" id.bind="theme.id" checked.bind="$parent.selectedTheme">
+                      <label class="form-check-label" for.bind="theme.id">
+                          ${theme.name}
+                        </label>
+                  </div>
+              </div>
+            </div>
+
+            <br/>
+
+            <div if.bind="innerHtmlForOutput" class="block-code CodeMirror cm-s-${selectedTheme.id}">
+                <div class="CodeMirror-gutter" style="float: left; padding: 4px 0;">
+                  <div class="CodeMirror-gutter-text">
+                    <pre id="numbers" innerhtml.bind="innerHtmlForNumbers" style="color: #CCC;">
+                    </pre>
+                  </div>
+                </div>
+                <div class="CodeMirror-lines">
+                    <div style="position: relative; margin-left: 33px">
+                        <pre id="output" innerhtml.bind="innerHtmlForOutput" style="position: relative; margin-left: 33px">
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+          
+        </ux-dialog-body>
+    
+        <ux-dialog-footer>
+          <button click.trigger="colorizeCodeNow()">Execute</button>
+          <button click.trigger="cancel()">Cancel</button>
+          <button click.trigger="ok()">Ok</button>
+        </ux-dialog-footer>
+      </ux-dialog>
+</template>
