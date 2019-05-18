@@ -6,10 +6,12 @@ export class Post {
     public title: string;
     public content: string;
     public creation: Date;
+    public isChecked: Boolean;
 
     static fromObject(src) {
         var tmpObj: Post = Object.assign(new Post(), src);
         tmpObj.creation = moment.utc(src.creation).toDate();
+        tmpObj.isChecked = false;
         return tmpObj;
     }
  

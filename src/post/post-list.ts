@@ -3,19 +3,23 @@ import {Router} from "aurelia-router";
 import {PostGateway} from "./post-gateway";
 import {Post} from "./models";
 import {Box} from "../dialogs/box";
+import { EventAggregator } from 'aurelia-event-aggregator';
 import * as moment from "moment";
 import 'moment/locale/fr'
+import { GroupList } from "resources/elements/group-list";
 
-@inject(Router, PostGateway, Box)
+@inject(Router, PostGateway, Box, EventAggregator)
 export class PostList{
   private router: Router;
   private postGateway: PostGateway;
   private box: Box;
+  private eventAggregator: EventAggregator;
   private posts: Array<Post> = [];
-  constructor(router: Router, postGateway: PostGateway, box: Box) {
+  constructor(router: Router, postGateway: PostGateway, box: Box, eventAggregator: EventAggregator) {
         this.router = router;
         this.postGateway = postGateway;
         this.box = box;
+        this.eventAggregator = eventAggregator;
   }
   private activate() {
       return this.postGateway.getAll()
@@ -48,7 +52,38 @@ export class PostList{
         self.posts.splice(pos, 1);
       }
   }
+  private deleteSelectedPosts() {
+    var cptr = this.selectedPosts.length;
+    var message = `Voulez-vous vraiment supprimer ${ cptr==1 ? 'l\'élément' : 'les ' + cptr + ' éléments' } ?`;
+    var title = 'Suppression';
+    var buttonYes = 'Oui';
+    var buttonNo = 'Non';
+
+    this.box.showQuestion(message, title, buttonYes, buttonNo).whenClosed(response => 
+      {
+        if (!response.wasCancelled && response.output == buttonYes) 
+        {
+          this.posts.forEach(post => 
+            {
+              if (post.isChecked)
+                performTheDelete(this, post);
+            });
+        }
+      });
+
+      async function performTheDelete(self: PostList, post: Post) {
+        await self.postGateway.deleteById(post.id);
+        var pos = self.posts.findIndex(x => x.id == post.id);
+        self.posts.splice(pos, 1);
+      }
+  }
   private viewSettings() {
     this.router.navigateToRoute('administration');
   }
+  private checkChange(value, groupKey, groupItems) {
+      this.eventAggregator.publish('checkChange', { groupKey: groupKey, groupItems: groupItems});
+  }
+  private get selectedPosts(){
+    return this.posts.filter(post => post.isChecked == true);
+    }
 }

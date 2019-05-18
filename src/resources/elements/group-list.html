@@ -1,10 +1,20 @@
-<template bindable="items, groupBy, orderBy">
-    <div repeat.for="group of items | groupBy:groupBy | orderBy:'key'" class="card" style="margin-bottom: 20px;">
+<template>
+    <div repeat.for="group of items | groupBy:groupBy | orderBy:'key'" class="card bg-warning border-warning mb-3">
       <div class="card-header">
-        ${group.key | dateFormat: 'MMMM YYYY' | uppercaseFirstLetter}
+        <div class="container">
+          <div class="row">
+            <div class="col">
+                <input type="checkbox" model.bind="group.key" checked.bind="checkedGroupKeys" change.delegate="checkAllChanged(group, $event.target.checked)" class="mr-3" style="transform: scale(2);">
+                ${ group.items.length } ${ group.items.length == 1 ? 'billet' : 'billets' }
+            </div>
+            <div class="col text-right">
+                ${group.key | dateFormat: 'MMMM YYYY' | uppercaseFirstLetter}
+            </div>
+          </div>
+        </div>
       </div>
       <ul class="list-group list-group-flush">
-        <li repeat.for="item of group.items | orderBy:orderBy" class="list-group-item">
+        <li repeat.for="item of group.items | orderBy:orderBy" class="text-primary list-group-item ${ item.isChecked ? 'bg-warning' : 'list-group-item-light' }">
           <template with.bind="item">
             <template replaceable part="item">${$this}</template>
           </template>

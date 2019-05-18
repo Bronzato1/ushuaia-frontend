@@ -4,17 +4,14 @@
 * Exécution `au run`
 * Démarrage du débugger `F5`
 
-### Pour compiler le projet pour la production
-
-* `au build --env prod`
-
 -----------
 
 Voir ici: https://code.visualstudio.com/tutorials/static-website/create-storage
 
-### Etapes pour republier sur Azure
+### Pour compiler le projet pour la production (Azure)
+
 - supprimer et recréer le rép publish
-- au build --env prod
+- `au build --env prod`
 - copier le rép scripts dans le rép publish
 - copier le rép font-awesome dans le rép publish
 - copier les fichiers index.html et favicon.ico dans le rép publish
