@@ -1,6 +1,6 @@
 <template>
-    <div repeat.for="group of items | groupBy:groupBy | orderBy:'key'" class="card bg-warning border-warning mb-3">
-      <div class="card-header">
+    <div repeat.for="group of items | groupBy:groupBy | orderBy:'key'" class="mmb-3">
+      <div class="card-header bg-light ${ $first ? '' : 'border-top' }">
         <div class="container">
           <div class="row">
             <div class="col">
@@ -14,7 +14,7 @@
         </div>
       </div>
       <ul class="list-group list-group-flush">
-        <li repeat.for="item of group.items | orderBy:orderBy" class="text-primary list-group-item ${ item.isChecked ? 'bg-warning' : 'list-group-item-light' }">
+        <li repeat.for="item of group.items | orderBy:orderBy" class="text-primary list-group-item ${ item.isChecked ? 'bg-light' : '' }">
           <template with.bind="item">
             <template replaceable part="item">${$this}</template>
           </template>

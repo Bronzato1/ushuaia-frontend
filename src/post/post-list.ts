@@ -15,6 +15,7 @@ export class PostList{
   private box: Box;
   private eventAggregator: EventAggregator;
   private posts: Array<Post> = [];
+  private zipFile: any;
   constructor(router: Router, postGateway: PostGateway, box: Box, eventAggregator: EventAggregator) {
         this.router = router;
         this.postGateway = postGateway;
@@ -27,6 +28,37 @@ export class PostList{
           this.posts.splice(0);
           this.posts.push.apply(this.posts, posts);
       });
+  }
+  private attached(){
+    var self = this;
+    $(document).ready(() => {
+      $('#fileChooser').change(function() {
+        self.importData();
+      });
+    });
+  }
+  private exportSelectedPosts() {
+    var ids = this.selectedPosts.map(x => x.id);
+    this.postGateway.downloadZip(ids);
+  }
+  private importData() {
+    if (!this.zipFile) {
+      $("#fileChooser").click();
+      return;
+    }
+    this.postGateway.uploadZip(this.zipFile);
+  }
+  private clearAllData() {
+    var message = 'Cette opération est irréversible. Etes-vous sur ?';
+    var title = 'Suppression totale';
+    var buttonOk = 'Ok';
+    var buttonCancel = 'Annuler';
+
+    this.box.showQuestion(message, title, buttonOk, buttonCancel).whenClosed((response) => 
+    { 
+      if (!response.wasCancelled && response.output == buttonOk)
+        this.postGateway.clearAllData();
+    });
   }
   private showPostDetail(postId) {
       this.router.navigateToRoute('post-detail', {id: postId});

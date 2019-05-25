@@ -66,8 +66,8 @@ export class PostGateway {
         console.log('Result ' + error.status + ': ' + error.statusText);
       });
   }
-  downloadZip() {
-    return this.httpClient.fetch(`api/post/downloadZip`)
+  downloadZip(ids) {
+    return this.httpClient.fetch(`api/post/downloadZip`, { method: 'POST', body: json(ids) })
     .then((response: Response) => response.blob())
     .then((blob: Blob) => 
     {

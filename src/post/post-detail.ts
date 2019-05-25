@@ -29,7 +29,7 @@ export class PostDetail {
   }
   private froalaConfig = {
     key: secret.froalaKey,
-    toolbarInline: false,
+    toolbarInline: true,
     charCounterCount: false,
     imageUploadURL: 'http://localhost:5000/api/froala/UploadImage',
     fileUploadURL: 'http://localhost:5000/api/froala/UploadFile',
@@ -38,7 +38,7 @@ export class PostDetail {
     imageManagerDeleteMethod: 'POST',
     codeMirror: CodeMirror,
     htmlUntouched: true,
-    toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', '|', 'fontFamily', 'fontSize', 'color', 'inlineClass', 'inlineStyle', 'paragraphStyle', 'lineHeight', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertFile', 'insertTable', '|', 'emoticons', 'fontAwesome', 'insertHR', 'selectAll', 'clearFormatting', '|', 'html', '|', 'undo', 'redo', 'myButton', 'colorizeCode'],
+    toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', '|', 'fontFamily', 'fontSize', 'color', 'inlineClass', 'inlineStyle', 'paragraphStyle', 'lineHeight', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertFile', 'insertTable', '|', 'emoticons', 'fontAwesome', 'insertHR', 'selectAll', 'clearFormatting', '|', 'html', '|', 'undo', 'redo', 'colorizeCode'],
     codeBeautifierOptions: {
       end_with_newline: true,
       indent_inner_html: true,

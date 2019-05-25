@@ -5,8 +5,7 @@ export class App {
     config.map([
       { route: '', redirect: 'postlist'},
       { route: 'postlist',      name: 'post-list',      moduleId: 'post/post-list' },
-      { route: 'postdetail',    name: 'post-detail',    moduleId: 'post/post-detail' },
-      { route: 'administration',name: 'administration', moduleId: 'global/administration' }
+      { route: 'postdetail',    name: 'post-detail',    moduleId: 'post/post-detail' }
     ]);
     this.router = router;
   }
