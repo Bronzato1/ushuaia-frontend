@@ -17,31 +17,45 @@
 
       <div class="form-group">
 
-        <div class="col-sm-12">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Titre du billet</span>
+        <div class="row  mb-3">
+          <div class="col-sm-12">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Titre du billet</span>
+              </div>
+              <input type="text" class="form-control" value.bind="post.title" placeholder="Le titre de votre billet" autofocus>
             </div>
-            <input type="text" class="form-control" value.bind="post.title" placeholder="Le titre de votre billet"
-              autofocus>
-          </div>
-        </div>
-
-        <div class="col-sm-5">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Date de création</span>
-            </div>
-            <abp-datetime-picker element.bind="datepicker" model.bind="post.creation"
-              options.bind="{ format: 'DD/MM/YYYY', locale: 'fr' }" icon-base="font-awesome" with-date-icon="true"
-              style="width: 150px;"></abp-datetime-picker>
           </div>
         </div>
         
-        <div class="col-sm-12">
-          <froala-editor value.two-way="post.content" config.bind="froalaConfig" event-handlers.bind = "froalaEvents"></froala-editor>
+        <div class="row mb-3">
+          <div class="col-sm-5">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Date</span>
+              </div>
+              <abp-datetime-picker element.bind="datepicker" model.bind="post.creation"
+                options.bind="{ format: 'DD/MM/YYYY', locale: 'fr' }" icon-base="font-awesome" with-date-icon="true"
+                style="width: 150px;"></abp-datetime-picker>
+            </div>
+          </div>
+
+          <div class="col-sm-7">
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Mots-clés</span>
+                  </div>
+                  <tags-input tags.bind="post.tagNames" on-added.call="onTagAdded(tagName)" on-deleted.call="onTagDeleted(tagName)" on-changed.call="onTagChanged(tagOldName, tagNewName)"></tags-input>
+                </div>
+          </div>
         </div>
 
+        <div class="row">
+          <div class="col-sm-12">
+            <froala-editor value.two-way="post.content" config.bind="froalaConfig" event-handlers.bind = "froalaEvents"></froala-editor>
+          </div>
+        </div>
+          
       </form>
   </section>
 

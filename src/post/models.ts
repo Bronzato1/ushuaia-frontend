@@ -7,11 +7,14 @@ export class Post {
     public content: string;
     public creation: Date;
     public isChecked: Boolean;
+    public tags: Array<Tag>;
+    public tagNames: string[];
 
     static fromObject(src) {
         var tmpObj: Post = Object.assign(new Post(), src);
         tmpObj.creation = moment.utc(src.creation).toDate();
         tmpObj.isChecked = false;
+        tmpObj.tagNames = tmpObj.tags && tmpObj.tags.map(x => x.name);
         return tmpObj;
     }
  
@@ -34,6 +37,9 @@ export class Post {
     get yearMonthDay(){
       return moment(this.creation).format('YYYY-MM-DD');
     }
+}
 
-    
+export class Tag {
+  public id: number;
+  public name: string;
 }

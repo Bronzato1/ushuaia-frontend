@@ -6,7 +6,6 @@ import {Box} from "../dialogs/box";
 import { EventAggregator } from 'aurelia-event-aggregator';
 import * as moment from "moment";
 import 'moment/locale/fr'
-import { GroupList } from "resources/elements/group-list";
 
 @inject(Router, PostGateway, Box, EventAggregator)
 export class PostList{
@@ -117,5 +116,5 @@ export class PostList{
   }
   private get selectedPosts(){
     return this.posts.filter(post => post.isChecked == true);
-    }
+  }
 }

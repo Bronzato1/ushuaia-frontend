@@ -28,12 +28,16 @@
         <div class="container">
           <div class="row">
             <div class="col">
-              <input type="checkbox" value="true" checked.bind="isChecked" change.delegate="checkChange($event.target.checked, group.key, group.items)" id="gridCheck${id}" class="mr-3" style="transform: scale(2);">
-              
+              <input type="checkbox" value="true" checked.bind="isChecked" change.delegate="checkChange($event.target.checked, group.key, group.items)" id="gridCheck${id}" class="mr-3 align-middle" style="transform: scale(2);">
+              <span class="badge badge-warning text-monospace mt-1 mr-1 align-top" repeat.for="tag of tags">
+                  ${tag.name}
+              </span>
               <a route-href="route: post-detail; params.bind: { id: id }" class="text-dark">
-                <span>${title}</span>
+                  <span>${title}</span> 
               </a>
               <span class="text-dark pull-right">${creation | dateFormat: 'DD/MM'}</span>
+              <a route-href="route: post-view; params.bind: { id: id }" class="text-light pull-right mr-2"><span class="fa fa-eye fa-lg"></span></a>
+              <a href="#" class="text-light pull-right mr-2"><span class="fa fa-times fa-lg"></span></a>
             </div>
           </div>
         </div>

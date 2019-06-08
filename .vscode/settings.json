@@ -4,7 +4,9 @@
   "html.suggest.angular1": false,
   "html.suggest.ionic": false,
   "files.exclude": {
-    "**/*.js": {"when": "$(basename).ts"},
+    "**/*.js": {
+      "when": "$(basename).ts"
+    },
     "**/*.js.map": true
-}
+  }
 }

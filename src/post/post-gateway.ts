@@ -21,7 +21,10 @@ export class PostGateway {
   getAll(): Promise<Post[]> {
     return this.httpClient.fetch(`api/post/`)
       .then(response => response.json())
-      .then(dto => dto.map(Post.fromObject));
+      .then(dto => 
+        { 
+          return dto.map(Post.fromObject); 
+        });
   }
   getById(id): Promise<Post> {
     return this.httpClient.fetch(`api/post/${id}`)
@@ -65,6 +68,28 @@ export class PostGateway {
       {
         console.log('Result ' + error.status + ': ' + error.statusText);
       });
+  }
+  tagAdded(postId, tagName) {
+    var data = {
+      postId: postId,
+      tagName: tagName
+    }
+    return this.httpClient.fetch(`api/post/tagAdded`, { method: 'POST', body: json(data) });
+  }
+  tagDeleted(postId, tagName) {
+    var data = {
+      postId: postId,
+      tagName: tagName
+    }
+    return this.httpClient.fetch(`api/post/tagDeleted`, { method: 'POST', body: json(data) });
+  }
+  tagChanged(postId, tagOldName, tagNewName) {
+    var data = {
+      postId: postId,
+      tagOldName: tagOldName,
+      tagNewName: tagNewName
+    }
+    return this.httpClient.fetch(`api/post/tagChanged`, { method: 'POST', body: json(data) });
   }
   downloadZip(ids) {
     return this.httpClient.fetch(`api/post/downloadZip`, { method: 'POST', body: json(ids) })

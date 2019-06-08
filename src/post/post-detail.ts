@@ -14,11 +14,6 @@ import * as $ from 'jquery';
 @inject(PostGateway, Router, Box, DialogService)
 export class PostDetail {
   @bindable datepicker;
-  private postGateway: PostGateway;
-  private router: Router;
-  private box: Box;
-  private dialogService: DialogService;
-  private post: Post;
   constructor(postGateway: PostGateway, router: Router, box: Box, dialogService: DialogService) {
     this.postGateway = postGateway;
     this.router = router;
@@ -27,6 +22,11 @@ export class PostDetail {
     this.injectCustomDialogForColorizeCode();
     this.injectCustomPopupForTesting();
   }
+  private postGateway: PostGateway;
+  private router: Router;
+  private box: Box;
+  private dialogService: DialogService;
+  private post: Post;
   private froalaConfig = {
     key: secret.froalaKey,
     toolbarInline: true,
@@ -56,8 +56,16 @@ export class PostDetail {
   }
   private activate(params, config) {
     var self = this;
+    
+    // return self.postGateway.getById(params.id).then(post => 
+    //   {
+    //     self.post = post;
+    //     config.navModel.setTitle(post.title);
+    //   });
+    
+    
     if (params && params.id)
-      loadThePost();
+      return loadThePost();
 
     async function loadThePost() {
       var post = await self.postGateway.getById(params.id);
@@ -311,5 +319,17 @@ export class PostDetail {
         });
       }      
     });
+  }
+  private onTagAdded(tagName) {
+    var postId = this.post.id;
+    this.postGateway.tagAdded(postId, tagName);
+  }
+  private onTagDeleted(tagName) {
+    var postId = this.post.id;
+    this.postGateway.tagDeleted(postId, tagName);
+  }
+  private onTagChanged(tagOldName, tagNewName) {
+    var postId = this.post.id;
+    this.postGateway.tagChanged(postId, tagOldName, tagNewName);
   }
 }

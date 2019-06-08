@@ -1,0 +1,59 @@
+tags-input {
+  position: relative;
+  display: flex;
+  flex: 1;
+  overflow: visible;
+  cursor: text;
+  width: 100%;
+  border: 1px solid #ced4da;
+  border-radius: 4px; 
+  padding: 2px; 
+  min-height: 30px;
+}
+
+.tag-input {
+  display: inline-block;
+  position: relative;
+  font-weight: lighter;
+  color: #495057;
+  background: #ffc107;
+  border-radius: 4px;
+  padding: 1px 4px;
+  margin: 2px;
+}
+
+.tag-input.editing {
+    background: transparent;
+    color: #000;
+    font-weight: normal;
+}
+
+.tag-input.editing .inner-input {
+  max-width: 100%;
+}
+
+
+.tag-input .inner-input {
+  margin: 0;
+  padding-left: 2px;
+  padding-bottom: 2px;
+  display: inline-block;
+  min-width: 15px;
+  max-width: 94%;
+  vertical-align: middle;
+}
+
+.tag-input .inner-input:focus {
+  outline: none;  
+}
+
+.tag-input .close-input {
+  display: inline-block;
+  padding-left: 2px;
+  padding-right: 4px;
+  vertical-align: text-top;
+}
+
+.tag-input .close-input:hover {
+  cursor: pointer;
+}

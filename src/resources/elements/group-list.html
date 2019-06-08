@@ -4,7 +4,7 @@
         <div class="container">
           <div class="row">
             <div class="col">
-                <input type="checkbox" model.bind="group.key" checked.bind="checkedGroupKeys" change.delegate="checkAllChanged(group, $event.target.checked)" class="mr-3" style="transform: scale(2);">
+                <input type="checkbox" model.bind="group.key" checked.bind="checkedGroupKeys" change.delegate="checkAllChanged(group, $event.target.checked)" class="mr-3 align-middle" style="transform: scale(2);">
                 ${ group.items.length } ${ group.items.length == 1 ? 'billet' : 'billets' }
             </div>
             <div class="col text-right">
